@@ -53,7 +53,7 @@ namespace NameSorter
     }
 
     // Our Metoder class that includes all methods that the user can choose between.
-    public class Metoder
+    public class Methods
     {
         public List<string> nameList = new List<string>(); // I create a List of names for sake of using List methods like sort.
 
@@ -94,7 +94,7 @@ namespace NameSorter
         static void Main(string[] args)
         {
             var startup = new Startup(); // We create a var to store all our methods from the class Startup.
-            var methods = new Metoder(); // We create a var to store all our methods from the class Metoder.
+            var methods = new Methods(); // We create a var to store all our methods from the class Metoder.
 
             int isFinished = 0; // Variable to keep track of when the user chooses to stop the program.
             bool isSorted = false; // Variable to keep track of if we have sorted the list.
