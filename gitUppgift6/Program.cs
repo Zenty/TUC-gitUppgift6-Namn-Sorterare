@@ -41,7 +41,12 @@ namespace NameSorter
             }
         }
 
-        public void DisplayNames() // A method for displaying all names from my list.
+        public void SortList() // A method for sorting our list of names.
+        {
+            nameList.Sort();
+        }
+
+        public void DisplayList() // A method for displaying all names from my list.
         {
             foreach (var name in nameList)
             {
@@ -60,11 +65,11 @@ namespace NameSorter
             methods.AddNewPerson("Alice"); // Add a new Person.
 
             Console.WriteLine("Original list:");
-            methods.DisplayNames(); // Display the list of names.
+            methods.DisplayList(); // Display the list of names.
 
-            methods.nameList.Sort(); // Sort the list
+            methods.SortList(); // Sort the list
             Console.WriteLine("\nSorted list:");
-            methods.DisplayNames(); // Display the list of names after it has been sorted.
+            methods.DisplayList(); // Display the list of names after it has been sorted.
 
             methods.FindName(); // We call for the .FindName method.
 
