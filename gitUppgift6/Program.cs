@@ -5,7 +5,7 @@ using System.Reflection.Metadata.Ecma335;
 
 namespace NameSorter
 {
-    class Person
+    public class Person
     {
         public string Name { get; set; }
 
@@ -15,32 +15,23 @@ namespace NameSorter
         }
 
     }
-    class Program
+
+    public class Metoder
     {
-        static void Main(string[] args)
+        public Dictionary<string, Person> persons = new Dictionary<string, Person>(); // I create a dictionary to store my Person objects, in case I want more properties than name in the future.
+        public List<string> nameList = new List<string>(); // I create a List of names for sake of using List methods like sort.
+
+        public void AddNewPerson(string name) // A method for adding new names to my list/create new Person objects.
         {
-            List<string> names = new List<string>(); // I create a list holding only names for the sake of String & List methods that doesn't work when the List contains objects.
-            List<Person> persons = new List<Person>(); // I create a list containing all our person objects.
-            persons.Add(new Person("Anna")); // Add a new Person object.
-            persons.Add(new Person("John")); // Add a new Person object.
-            persons.Add(new Person("Alice")); // Add a new Person object.
-
-            Console.WriteLine("Original list:");
-            foreach (var name in names)
-            {
-                Console.WriteLine(name);
-            }
-
-            names.Sort();
-            Console.WriteLine("\nSorted list:");
-            foreach (var name in names)
-            {
-                Console.WriteLine(name);
-            }
-
+            persons.Add(name, new Person(name)); // I create a new Person object in case I need more properties in the future.
+            nameList.Add(name); // I add the name to a List for easy use.
+        }
+        public void FindName() // A method for finding already existing names.
+        {
             Console.WriteLine("\nEnter name to search:");
             string searchName = Console.ReadLine();
-            if (names.Contains(searchName))
+
+            if (nameList.Contains(searchName))
             {
                 Console.WriteLine($"{searchName} is in the list.");
             }
@@ -48,7 +39,37 @@ namespace NameSorter
             {
                 Console.WriteLine($"{searchName} is not in the list.");
             }
+        }
+
+        public void DisplayNames() // A method for displaying all names from my list.
+        {
+            foreach (var name in nameList)
+            {
+                Console.WriteLine(name); // Display name
+            }
+        }
+    }
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            var methods = new Metoder(); // We create a var to store all our methods from the class Metoder.
+ 
+            methods.AddNewPerson("Anna"); // Add a new Person.
+            methods.AddNewPerson("John"); // Add a new Person.
+            methods.AddNewPerson("Alice"); // Add a new Person.
+
+            Console.WriteLine("Original list:");
+            methods.DisplayNames(); // Display the list of names.
+
+            methods.nameList.Sort(); // Sort the list
+            Console.WriteLine("\nSorted list:");
+            methods.DisplayNames(); // Display the list of names after it has been sorted.
+
+            methods.FindName(); // We call for the .FindName method.
+
             Console.ReadKey();
+
 
         }
     }
