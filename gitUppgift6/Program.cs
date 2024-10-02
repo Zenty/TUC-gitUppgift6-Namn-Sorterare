@@ -24,10 +24,6 @@ namespace NameSorter
             persons.Add(new Person("Anna")); // Add a new Person object.
             persons.Add(new Person("John")); // Add a new Person object.
             persons.Add(new Person("Alice")); // Add a new Person object.
-            foreach (Person person in persons) // For each Person object we have, we add each Person's name to the list.
-            {
-                names.Add(person.Name);
-            }
 
             Console.WriteLine("Original list:");
             foreach (var name in names)
