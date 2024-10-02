@@ -53,7 +53,7 @@ namespace NameSorter
     }
 
     // Our Person class where we store object data about each person, incase we want to expand the app to include more things than name.
-    public class Person
+   /* public class Person
     {
         public string Name { get; set; }
 
@@ -62,17 +62,17 @@ namespace NameSorter
             Name = name;
         }
 
-    }
+    }*/
 
     // Our Metoder class that includes all methods that the user can choose between.
     public class Metoder
     {
-        public Dictionary<string, Person> persons = new Dictionary<string, Person>(); // I create a dictionary to store my Person objects, in case I want more properties than name in the future.
+       // public Dictionary<string, Person> persons = new Dictionary<string, Person>(); // I create a dictionary to store my Person objects, in case I want more properties than name in the future.
         public List<string> nameList = new List<string>(); // I create a List of names for sake of using List methods like sort.
 
         public void AddNewPerson(string name) // A method for adding new names to my list/create new Person objects.
         {
-            persons.Add(name, new Person(name)); // I create a new Person object in case I need more properties in the future.
+           // persons.Add(name, new Person(name)); // I create a new Person object in case I need more properties in the future.
             nameList.Add(name); // I add the name to a List for easy use.
         }
         public void FindName(string searchName) // A method for finding already existing names.
@@ -120,6 +120,7 @@ namespace NameSorter
                         Console.WriteLine($"\n[Option 1] Add new name:");
                         methods.AddNewPerson(Console.ReadLine());
                         Console.WriteLine(); // Adding line-break.
+                        isSorted = false; // Since the list is no longer sorted if we add a new name.
                         break;
                     case 2:
                         Console.WriteLine("\n[Option 2] Enter name to search:");
