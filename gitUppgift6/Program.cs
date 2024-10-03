@@ -46,7 +46,6 @@ namespace NameSorter
                 return j;
             } else
             {
-                Console.WriteLine($"{j} is not a valid option.");
                 return 0;
             }
         }
