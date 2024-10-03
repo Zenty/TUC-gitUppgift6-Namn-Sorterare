@@ -40,13 +40,40 @@ namespace NameSorter
             Console.Write("Exit program.\n");
 
             Console.ForegroundColor = ConsoleColor.DarkGreen; // Make all console input + method output green.
+            // string userInput = Console.ReadLine();
+            
             string userInput = Console.ReadLine();
             if (Int32.TryParse(userInput, out int j)) // Try and parse the string into an int we can use in our switch.
             {
                 return j;
-            } else
+            }
+            else
             {
                 return 0;
+            }
+        }
+    }
+
+    // Our ErrorHandling class for validating user inputs.
+    public class ErrorHandling
+    {
+        public bool StringHandler(string input)
+        {
+            try
+            {
+                string userInput = input;
+                if (userInput == "" || userInput == " ")
+                {
+                    return false;
+                } else
+                {
+                    return true;
+                }
+
+            } catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return false;
             }
         }
     }
@@ -55,20 +82,34 @@ namespace NameSorter
     public class Methods
     {
         public List<string> nameList = new List<string>(); // I create a List of names for sake of using List methods like sort.
+        public ErrorHandling validateString = new ErrorHandling(); // We create a var to store all our methods from the class ErrorHandling.
 
         public void AddNewPerson(string name) // A method for adding new names to my list/create new Person objects.
         {
-            nameList.Add(name); // I add the name to a List for easy use.
+            if (validateString.StringHandler(name))
+            {
+                nameList.Add(name); // I add the name to a List for easy use.
+            } else
+            {
+                Console.WriteLine($"Invalid input.\n");
+            }
         }
         public void FindName(string searchName) // A method for finding already existing names.
         {
-            if (nameList.Contains(searchName))
+            if (validateString.StringHandler(searchName))
             {
-                Console.WriteLine($"{searchName} is in the list.\n");
-            }
-            else
+
+                if (nameList.Contains(searchName))
+                {
+                    Console.WriteLine($"{searchName} is in the list.\n");
+                }
+                else
+                {
+                    Console.WriteLine($"{searchName} is not in the list.\n");
+                }
+            } else
             {
-                Console.WriteLine($"{searchName} is not in the list.\n");
+                Console.WriteLine($"Invalid input.\n");
             }
         }
 
